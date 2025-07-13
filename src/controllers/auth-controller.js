@@ -94,5 +94,16 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: 'Internal server error.' });
   }
 };
+// Logout User
+const logoutUser = (req, res) => {
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+  });
 
-module.exports = { registerUser, loginUser };
+  res.status(200).json({ message: 'Logged out successfully.' });
+};
+
+
+module.exports = { registerUser, loginUser,  logoutUser };
