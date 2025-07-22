@@ -72,4 +72,5 @@ const getReceiptById = async (req, res) => {
     }
 };
 
+
 module.exports = { createReceipt, getUserReceipts, getReceiptById };
