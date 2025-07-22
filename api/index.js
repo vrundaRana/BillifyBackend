@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require('serverless-http');
 const connectDB = require('../src/config/connectDB');
 const authRoute = require('../src/routes/auth-route');
 const receiptRoute = require('../src/routes/receipt-route');
@@ -25,10 +26,10 @@ app.use('/api/auth', authRoute);
 app.use('/api/receipts', receiptRoute);
 app.use('/api/analytics', analyticsRoute);
 
-// For Vercel
+// Default route
 app.get('/', (req, res) => {
   res.send('Billify API is running');
 });
 
-// Export the Express API
-module.exports = app;
+// Export as serverless handler
+module.exports = serverless(app);
